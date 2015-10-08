@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:form>
+		<p:panel id="painel" header="Fazer Login">
+			
+			<p:separator/>
+			
+			<p:messages id="msgs"/>
+			
+			<h:panelGrid columns="3" cellpadding="5">
+				<p:outputLabel for="login" value="Usuário:"/>
+				<p:inputText id="login" value="#{loginUsuario.login}" required="true" label="Login">
+					<f:validateLength minimum="2"/>
+				</p:inputText>
+				<p:message for="login" display="icon"/>
+				
+				<p:outputLabel for="senha" value="Senha:"/>
+				<p:password id="senha" value="#{loginUsuario.senha}" required="true" label="Senha">
+					<f:validateLength minimum="2"/>
+					<p:ajax update="msgSenha" event="keyup"/>
+				</p:password>
+				<p:message for="senha" id="msgSenha" display="icon"/>	
+				
+				<p:spacer height="5"/>
+			
+			</h:panelGrid>
+			
+			<p:commandButton value="Logar" update="painel" actionListener="#{loginUsuario.logar}" icon="ui-icon-check" />
+			
+		</p:panel>
+	</h:form>
+
+</html>
