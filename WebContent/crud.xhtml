@@ -8,40 +8,40 @@
 <h:head>
 	<title>NHLSoftware</title>
 
-	<!-- 	<h:outputStylesheet library="css" name="standard.css" /> -->
-
 	<link rel="StyleSheet" type="text/css" href="css/standard.css"
 		media="screen" />
-</h:head>
 
+</h:head>
 <h:body>
+
 	<h:form>
-		<p:panel id="painel" header="NHL Software">
-			<p:separator/>
+		<p:panel id="painelCadastroUsuario" header="Cadastrar Usuário">
+			<p:separator />
 
 			<p:messages id="msgs" />
 
-			<h:panelGrid columns="2" cellpadding="5" >
+			<h:panelGrid columns="2" cellpadding="5">
 				<p:outputLabel for="login" value="Usuário:" />
-				<p:inputText id="login" value="#{loginUsuario.login}"
-					required="true" label="Login">
-					<f:validateLength minimum="4" />
+				<p:inputText id="login" value="#{usuarioBean.login}" required="true"
+					label="Login">
+					<f:validateLength minimum="2" />
 				</p:inputText>
 
 				<p:outputLabel for="senha" value="Senha:" />
-				<p:password id="senha" value="#{loginUsuario.senha}" required="true"
+				<p:password id="senha" value="#{usuarioBean.senha}" required="true"
 					label="Senha">
-					<f:validateLength minimum="4" />
+					<f:validateLength minimum="2" />
 				</p:password>
 
 				<p:spacer height="5" />
 
 			</h:panelGrid>
 
-			<p:commandButton value="Logar" update="@form"
-				actionListener="#{loginUsuario.logar}" icon="ui-icon-check" />
+			<p:commandButton value="Salvar" update="@form"
+				actionListener="#{usuarioBean.salvar}" icon="ui-icon-check" />
 
 		</p:panel>
+
 	</h:form>
 
 </h:body>

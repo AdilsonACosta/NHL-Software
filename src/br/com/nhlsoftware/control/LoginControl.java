@@ -1,16 +1,25 @@
 package br.com.nhlsoftware.control;
 
+import java.io.IOException;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import br.com.nhlsoftware.dao.ConexaoBanco;
+import br.com.nhlsoftware.dao.UsuarioDao;
+import br.com.nhlsoftware.model.Usuario;
 
 @ManagedBean(name = "loginUsuario")
-public class LoginControl {
+public class LoginControl{
 
 	private String login;
 	private String senha;
+	
+	private UsuarioDao usuarioDao;
+	
+	public LoginControl(){
+		this.usuarioDao = new UsuarioDao();
+	}
 
 	public String getLogin() {
 		return login;
@@ -29,29 +38,19 @@ public class LoginControl {
 	}
 
 	public void logar() {
-		testarConexao();
-
-		if (login.equals("Adilson") && senha.equals("12345")) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Bem Vindo " + login + " "));
+		Usuario usuario = this.usuarioDao.pesquisarUsuario(this.login, this.senha);
+		this.login = "";
+		this.senha = "";
+		if (usuario != null) {
+			try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("crud.jsf");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Login ou Senha Inválido!"));
-			;
 		}
+		
 	}
-
-	private void testarConexao() {
-		// TOSystem.out.println(ConexaoBanco.satatusConexao());
-		
-		
-		System.out.println(ConexaoBanco.statusConexao());
-		
-		ConexaoBanco.getConexaoBanco();
-		System.out.println(ConexaoBanco.statusConexao());
-		
-		ConexaoBanco.FecharConexao();
-		System.out.println(ConexaoBanco.statusConexao());
-	}
-
 }

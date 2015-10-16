@@ -5,72 +5,53 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoBanco {
-	
-	private static String status = "Não aconteceu...";
-	
-	public ConexaoBanco(){ 
-	
-	}
-	
-	public static java.sql.Connection getConexaoBanco(){
-		
-		Connection conexao = null;
-		
-		try{
-			String driverName = "com.mysql.jdbc.Driver";
+
+	private final String driverName = "com.mysql.jdbc.Driver";
+	private final String serverName = "localhost";
+	private final String mydatabase = "nhlsoftware";
+	private final String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
+	private final String usuarioBD = "root";
+	private final String senha = "root";
+
+	private Connection conexao;
+
+	public Connection abrirConexao() {
+		try {
 			Class.forName(driverName);
-			
-			String serverName = "localhost";
-			String mydatabase = "nhlsoftware";
-			String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
-			String username = "root";
-			String senha = "root";
-			
-			conexao = DriverManager.getConnection(url, username, senha);
-			
-			if(conexao != null){
-				status = ("STATUS ---> CONECTADO COM SUCESSO!");
-			}
-			else{
-				status = ("STATUS ---> Não foi possível realizar sua conexão");
-			}
-			
-			return conexao;
-			
-		}catch(ClassNotFoundException e){
-			
-			System.out.println("Driver não encontrado");
-			return null;
-		
-		}catch (SQLException e) {
-			
-			System.out.println("Não foi possível se conectar ao B.D");
-			
+			return conexao = DriverManager.getConnection(url, usuarioBD, senha);
+		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}
-	
-	public static String statusConexao(){
-		
-		return status;
+
+	public Connection getConexaoBanco() {
+		return conexao;
 	}
-	
-	public static boolean FecharConexao(){
-		
+
+	public String statusConexao() {
 		try {
-			ConexaoBanco.getConexaoBanco().close();
+			if (conexao != null && !conexao.isClosed()) {
+				return "Conexão aberta";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "Conexão fechada";
+	}
+
+	public boolean FecharConexao() {
+		try {
+			conexao.close();
 			return true;
-		
-		}catch (SQLException e) {
+
+		} catch (Exception e) {
 			return false;
 		}
-		
 	}
-	
-	public static java.sql.Connection ReiniciarConexao(){
-		
+
+	public java.sql.Connection ReiniciarConexao() {
 		FecharConexao();
-		
-		return ConexaoBanco.getConexaoBanco();
+		return abrirConexao();
 	}
 }
