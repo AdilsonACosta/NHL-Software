@@ -8,38 +8,41 @@
 <h:head>
 	<title>NHLSoftware</title>
 
-	<!-- 	<h:outputStylesheet library="css" name="standard.css" /> -->
-
 	<link rel="StyleSheet" type="text/css" href="css/standard.css"
 		media="screen" />
-</h:head>
 
+</h:head>
 <h:body>
+
 	<h:form>
-		<p:panel id="painel" header="NHL Software">
-			<p:separator/>
+		<p:panel id="painelCadastroPaciente" header="Cadastrar Paciente">
+			<p:separator />
 
 			<p:messages id="msgs" />
 
-			<h:panelGrid columns="2" cellpadding="5" >
-				<p:outputLabel for="login" value="Usuário:" />
-				<p:inputText id="login" value="#{loginUsuario.login}"
-					required="true" label="Login">
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="nome" value="Paciente:" />
+				<p:inputText id="nome" value="#{pacienteBean.nome}" required="true"
+					label="Nome">
+					<f:validateLength minimum="2" />
 				</p:inputText>
 
-				<p:outputLabel for="senha" value="Senha:" />
-				<p:password id="senha" value="#{loginUsuario.senha}" required="true"
-					label="Senha">
-				</p:password>
+				<p:outputLabel for="cpf" value="CPF:" />
+				<p:inputText id="cpf" value="#{pacienteBean.cpf}" required="true"
+					label="Cpf">
+					<f:validateLength minimum="2" />
+				</p:inputText>
 
 				<p:spacer height="5" />
 
 			</h:panelGrid>
 
-			<p:commandButton value="Logar" update="@form"
-				actionListener="#{loginUsuario.logar}" icon="ui-icon-check" />
+			<p:commandButton value="Salvar" update="@form"
+				actionListener="#{pacienteBean.salvarPaciente}" icon="ui-icon-check" />
+			
 
 		</p:panel>
+
 	</h:form>
 
 </h:body>

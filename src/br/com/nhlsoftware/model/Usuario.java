@@ -1,7 +1,7 @@
 package br.com.nhlsoftware.model;
 
 public class Usuario {
-	
+
 	private Long id;
 
 	private String login;
@@ -30,7 +30,4 @@ public class Usuario {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
-
 }

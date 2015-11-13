@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Anamnese</title>
+	<link rel="StyleSheet" type="text/css" href="css/standard.css"
+		media="screen" />
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel id="painelCadastroAnamnese" header="Dados Pessoais">
+			<p:messages id="msgs" />
+			<p:panelGrid columns="2">
+				<p:outputLabel for="nomePaciente" value="Nome:" />
+				<p:inputText id="nomePaciente" value="#{anamneseBean.nome}"
+					required="true" size="60" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="4">
+				<p:outputLabel for="idadePaciente" value="Idade:" />
+				<p:inputText id="idadePaciente" value="#{anamneseBean.idade}"
+					required="true" size="1" />
+				<p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
+				<p:calendar locale="pt" id="dataNascimento"
+					value="#{anamneseBean.dataDeNascimento}" pattern="dd-MM-yyyy"
+					mask="true" required="true" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="4">
+				<p:outputLabel for="sexoPaciente" value="Gênero:" />
+				<p:selectOneMenu id="sexoPaciente"
+					value="#{anamneseBean.escolherGenero}" required="true">
+					<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+					<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="estadoCivil" value="Estado Civil:" />
+				<p:selectOneMenu id="estadoCivil"
+					value="#{anamneseBean.estadoCivil}" required="true">
+					<f:selectItem itemLabel="Solteiro" itemValue="Solteiro" />
+					<f:selectItem itemLabel="Casado" itemValue="Casado" />
+					<f:selectItem itemLabel="Viúvo" itemValue="Viúvo" />
+					<f:selectItem itemLabel="Divorciado" itemValue="Divorciado" />
+					<f:selectItem itemLabel="Outro" itemValue="Outro" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:commandButton value="Cadastrar"
+					action="#{anamneseBean.salvarAnamnese}" update="@form" />
+			</p:panelGrid>
+		</p:panel>
+
+	</h:form>
+
+	<script type="text/javascript">
+		PrimeFaces.locales['pt'] = {
+			closeText : 'Fechar',
+			prevText : 'Anterior',
+			nextText : 'Próximo',
+			currentText : 'Começo',
+			monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+					'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
+					'Novembro', 'Dezembro' ],
+			monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+					'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Des' ],
+			dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta',
+					'Sexta', 'Sábado' ],
+			dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb' ],
+			dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+			weekHeader : 'Semana',
+			firstDay : 1,
+			isRTL : false,
+			showMonthAfterYear : false,
+			yearSuffix : '',
+			timeOnlyTitle : 'Só Horas',
+			timeText : 'Tempo',
+			hourText : 'Hora',
+			minuteText : 'Minuto',
+			secondText : 'Segundo',
+			ampm : false,
+			month : 'Mês',
+			week : 'Semana',
+			day : 'Dia',
+			allDayText : 'Todo Dia'
+		};
+	</script>
+</h:body>
+
+</html>

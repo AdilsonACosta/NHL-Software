@@ -1,7 +1,7 @@
 package br.com.nhlsoftware.dao;
 
 import java.util.*;
-import java.awt.image.ConvolveOp;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import br.com.nhlsoftware.model.Usuario;
 
 public class UsuarioDao extends ConexaoBanco {
-
-	public Usuario criarUsuario(Usuario usuario) {
+	
+	public Usuario criarUsuario(Usuario usuario) { //IMPLEMENTA플O DO CREATE
 
 		Connection conexao = null;
 		PreparedStatement st = null;
@@ -68,37 +68,37 @@ public class UsuarioDao extends ConexaoBanco {
 	// return null;
 	// }
 
-	public Usuario pesquisarUsuario(String login, String senha) {
-		String sql = "SELECT u.* FROM nhlsoftware.usuario u WHERE u.nome = '"
-				+ login + "' AND u.senha = '" + senha + "'";
-		try {
-			Connection conexao = this.abrirConexao();
+//	public Usuario pesquisarUsuario(String login, String senha) {
+//		String sql = "SELECT u.* FROM nhlsoftware.usuario u WHERE u.nome = '"
+//				+ login + "' AND u.senha = '" + senha + "'";
+//		try {
+//			Connection conexao = this.abrirConexao();
+//
+//			PreparedStatement st = conexao.prepareStatement(sql);
+//			// st.setString(1, login);
+//			// st.setString(2, senha);
+//
+//			ResultSet rs = st.executeQuery(sql);
+//
+//			if (rs.next()) {
+//				String loginUsuario = rs.getString("nome");
+//				String senhaUsuario = rs.getString("senha");
+//
+//				Usuario usuario = new Usuario();
+//				usuario.setId(rs.getLong("id"));
+//				usuario.setLogin(loginUsuario);
+//				usuario.setSenha(senhaUsuario);
+//
+//				return usuario;
+//			}
+//			conexao.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
-			PreparedStatement st = conexao.prepareStatement(sql);
-			// st.setString(1, login);
-			// st.setString(2, senha);
-
-			ResultSet rs = st.executeQuery(sql);
-
-			if (rs.next()) {
-				String loginUsuario = rs.getString("nome");
-				String senhaUsuario = rs.getString("senha");
-
-				Usuario usuario = new Usuario();
-				usuario.setId(rs.getLong("id"));
-				usuario.setLogin(loginUsuario);
-				usuario.setSenha(senhaUsuario);
-
-				return usuario;
-			}
-			conexao.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public List<Usuario> listarUsuario() throws SQLException {
+	public List<Usuario> listarUsuario() throws SQLException { //IMPLEMENTA플O DO READ;
 
 		String sql = "SELECT * FROM usuario";
 
@@ -116,7 +116,7 @@ public class UsuarioDao extends ConexaoBanco {
 			ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
 
 			while (rs.next()) {
-				Long id = (long) rs.getInt("id");
+				Long id = rs.getLong("id");
 				String login = rs.getString("nome");
 				String senha = rs.getString("senha");
 
@@ -136,7 +136,7 @@ public class UsuarioDao extends ConexaoBanco {
 		}
 
 	}
-	public Usuario atualizar(Usuario usuario) throws SQLException{
+	public Usuario atualizar(Usuario usuario) throws SQLException{ //IMPLEMENTA플O DO UPDATE;
 		String sql = "UPDATE usuario SET nome = ?, senha = ? WHERE id = ?";
 		
 		Connection conexao = null;
@@ -147,7 +147,7 @@ public class UsuarioDao extends ConexaoBanco {
 			conexao = this.abrirConexao();
 			st = conexao.prepareStatement(sql);
 			
-			st.setString(1, "adilsonCosta");
+			st.setString(1, "samyr");
 			st.setString(2,"54321");
 			st.setLong(3, 1);
 			st.executeUpdate();
@@ -163,7 +163,7 @@ public class UsuarioDao extends ConexaoBanco {
 		
 	}
 	
-	public Usuario deletar(Usuario usuario) throws SQLException{
+	public Usuario deletar(Usuario usuario) throws SQLException{ //IMPLEMENTA플O DO DELETE
 		
 		String sql = "DELETE FROM usuario WHERE id = ?";
 		
@@ -175,7 +175,7 @@ public class UsuarioDao extends ConexaoBanco {
 			conexao = this.abrirConexao();
 			st = conexao.prepareStatement(sql);
 			
-			st.setLong(1,27);
+			st.setLong(1,28);
 			st.executeUpdate();
 			
 			conexao.close();

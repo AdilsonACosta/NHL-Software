@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Avaliação Antropométrica</title>
+	<link rel="StyleSheet" type="text/css" href="css/standard.css"
+		media="screen" />
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel id="painelAvaliacaoAntropometrica"
+			header="Avaliação Antropometrica">
+			<p:messages id="msgs" />
+			
+			<p:spacer width="2" />
+			<p:panelGrid columns="2">
+				<p:outputLabel for="dataAvalAntropometrica" value="Data da Avaliação Antropométrica:" />
+				<p:calendar locale="pt" id="dataAvalAntropometrica"
+					value="#{antropometriaBean.dataAvalicaoAntropometrica}"
+					pattern="dd-MM-yyyy" mask="true" required="true" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="peso" value="Peso(KG):" />
+				<p:inputMask id="peso" value="#{antropometriaBean.peso}"
+					mask="99.99" placeHolder="" required="true" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="altura" value="Altura(m):" />
+				<p:inputMask id="altura" value="#{antropometriaBean.altura}"
+					mask="9.99" placeHolder="" required="true" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="imc" value="IMC(Kg/m²):" />
+				<p:inputMask id="imc" value="#{antropometriaBean.imc}" mask="99.99"
+					placeHolder="" required="true" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="classificaçãoIMC" value="Classificação do IMC:" />
+				<p:selectOneMenu id="classificaçãoIMC"
+					value="#{antropometriaBean.classificacaoImc}" required="true">
+					<f:selectItem itemLabel="Abaixo do Peso" itemValue="Abaixo do Peso" />
+					<f:selectItem itemLabel="Peso Normal" itemValue="Peso Normal" />
+					<f:selectItem itemLabel="Acima do Peso" itemValue="Acima do Peso" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="pesoTeoricoMinimo"
+					value="Peso Téorico Mínimo(KG):" />
+				<p:inputMask id="pesoTeoricoMinimo"
+					value="#{antropometriaBean.pesoTeoricoMinimo}" mask="99.99"
+					placeHolder="" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="pesoTeoricoMedio"
+					value="Peso Téorico Médio(KG):" />
+				<p:inputMask id="pesoTeoricoMedio"
+					value="#{antropometriaBean.pesoTeoricoMedio}" mask="99.99"
+					placeHolder="" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="pesoTeoricoMaximo"
+					value="Peso Téorico Maximo(KG):" />
+				<p:inputMask id="pesoTeoricoMaximo"
+					value="#{antropometriaBean.pesoTeoricoMaximo}" mask="99.99"
+					placeHolder="" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="circAbdominal"
+					value="Circunferencia Abdominal(cm):" />
+				<p:inputMask id="circAbdominal"
+					value="#{antropometriaBean.circunfericiaAbdominal}" mask="999.9"
+					placeHolder="" required="true" size="1" />
+
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="classificaçãoCircAbdominal"
+					value="Classificação de Circunferencia Abdominal:" />
+				<p:selectOneMenu id="classificaçãoCircAbdominal"
+					value="#{antropometriaBean.classificacaoCircAbdominal}"
+					required="true">
+					<f:selectItem itemLabel="Sem Risco" itemValue="Sem Risco" />
+					<f:selectItem itemLabel="Com Risco" itemValue="Com Risco" />
+					<f:selectItem itemLabel="Risco Elevado" itemValue="Risco Elevado" />
+					<f:selectItem itemLabel="Risco Muito Elevado"
+						itemValue="Risco Muito Elevado" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:commandButton value="Salvar"
+					action="#{antropometriaBean.salvarAvaliacaoAntropometrica}"
+					update="@form" />
+			</p:panelGrid>
+		</p:panel>
+
+	</h:form>
+
+	<script type="text/javascript">
+		PrimeFaces.locales['pt'] = {
+			closeText : 'Fechar',
+			prevText : 'Anterior',
+			nextText : 'Próximo',
+			currentText : 'Começo',
+			monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+					'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
+					'Novembro', 'Dezembro' ],
+			monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+					'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Des' ],
+			dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta',
+					'Sexta', 'Sábado' ],
+			dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb' ],
+			dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+			weekHeader : 'Semana',
+			firstDay : 1,
+			isRTL : false,
+			showMonthAfterYear : false,
+			yearSuffix : '',
+			timeOnlyTitle : 'Só Horas',
+			timeText : 'Tempo',
+			hourText : 'Hora',
+			minuteText : 'Minuto',
+			secondText : 'Segundo',
+			ampm : false,
+			month : 'Mês',
+			week : 'Semana',
+			day : 'Dia',
+			allDayText : 'Todo Dia'
+		};
+	</script>
+</h:body>
+
+</html>

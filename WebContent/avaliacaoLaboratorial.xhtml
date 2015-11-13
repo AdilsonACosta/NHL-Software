@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Avaliação Laboratorial</title>
+	<link rel="StyleSheet" type="text/css" href="css/standard.css"
+		media="screen" />
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel id="painelAvaliacaoLaboratorial"
+			header="Avaliação Laboratorial">
+			<p:messages id="msgs" />
+			
+			<p:spacer width="2" />
+			<p:panelGrid columns="2">
+				<p:outputLabel for="dataAvalLaboratorial" value="Data da Avaliação Laboratorial:" />
+				<p:calendar locale="pt" id="dataAvalLaboratorial"
+					value="#{avaliacLaboratorialBean.dataAvaliacaoLaboratorial}"
+					pattern="dd-MM-yyyy" mask="true" required="true" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="hemoglobina" value="Hemoglobina: " />
+				<p:inputMask id="hemoglobina" value="#{avaliacLaboratorialBean.hemoglobina}"
+					mask="99.99" placeHolder="" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="trigliceridios" value="Trigliceridios: " />
+				<p:inputMask id="trigliceridios" value="#{avaliacLaboratorialBean.trigliceridios}"
+					mask="9.99" placeHolder="" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="colesterolTotal" value="Colesterol Total: " />
+				<p:inputMask id="colesterolTotal" value="#{avaliacLaboratorialBean.colesterolTotal}" mask="99.99"
+					placeHolder=""  size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="ldl" value="LDL: " />
+				<p:inputMask id="ldl" value="#{avaliacLaboratorialBean.ldl}" mask="99.99" placeHolder="" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="hdl" value="HDL :" />
+				<p:inputMask id="hdl" value="#{avaliacLaboratorialBean.hdl}" mask="99.99" placeHolder="" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="vldl" value="VLDL:" />
+				<p:inputMask id="vldl" value="#{avaliacLaboratorialBean.vldl}" mask="99.99" placeHolder="" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="glicemiaDeJejum" value="Glicemia De Jejum:" />
+				<p:inputMask id="glicemiaDeJejum" value="#{avaliacLaboratorialBean.glicemiaDeJejum}" mask="999.9" placeHolder="" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:outputLabel for="glicemiaPosPrandial" value="Glicemia Pós Prandial:" />
+				<p:inputMask id="glicemiaPosPrandial" value="#{avaliacLaboratorialBean.glicemiaPosPrandial}" mask="999.9" placeHolder="" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+			
+			<p:panelGrid columns="2">
+				<p:outputLabel for="pressaoArterial" value="Pressão Arterial:" />
+				<p:inputMask id="pressaoArterial" value="#{avaliacLaboratorialBean.pressaoArterial}" mask="999.9" placeHolder="" size="1" />
+			</p:panelGrid>
+			<p:spacer width="2" />
+
+			<p:panelGrid columns="2">
+				<p:commandButton value="Salvar"
+					action="#{avaliacLaboratorialBean.salvarAvaliacaoLaboratorial}" update="@form" />
+			</p:panelGrid>
+		</p:panel>
+
+	</h:form>
+
+	<script type="text/javascript">
+		PrimeFaces.locales['pt'] = {
+			closeText : 'Fechar',
+			prevText : 'Anterior',
+			nextText : 'Próximo',
+			currentText : 'Começo',
+			monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+					'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
+					'Novembro', 'Dezembro' ],
+			monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+					'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Des' ],
+			dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta',
+					'Sexta', 'Sábado' ],
+			dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb' ],
+			dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+			weekHeader : 'Semana',
+			firstDay : 1,
+			isRTL : false,
+			showMonthAfterYear : false,
+			yearSuffix : '',
+			timeOnlyTitle : 'Só Horas',
+			timeText : 'Tempo',
+			hourText : 'Hora',
+			minuteText : 'Minuto',
+			secondText : 'Segundo',
+			ampm : false,
+			month : 'Mês',
+			week : 'Semana',
+			day : 'Dia',
+			allDayText : 'Todo Dia'
+		};
+	</script>
+</h:body>
+
+</html>

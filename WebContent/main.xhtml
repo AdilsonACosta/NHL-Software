@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<title>Início</title>
+	<style type="text/css">
+body {
+	background-color: #eeeeee;
+	font-size: 12px
+}
+</style>
+</h:head>
+<h:body>
+	<h:form>
+		<p:tabMenu activeIndex="#{param.i}">
+			<p:menuitem value="Paciente" icon="ui-icon-star">
+				<f:param name="i" value="crudPaciente.xhtml" />
+			</p:menuitem>
+			<p:menuitem value="Anamnese" icon="ui-icon-search">
+				<f:param name="i" value="1" />
+			</p:menuitem>
+			<p:menuitem value="CRUD" icon="ui-icon-document">
+				<f:param name="i" value="2" />
+			</p:menuitem>
+		</p:tabMenu>
+	</h:form>
+	<!--         <div align="center"> -->
+	<!--             <p:layout style="min-width:1020px;max-width:1020px;min-height:600px">   -->
+	<!--                 <p:layoutUnit position="north" size="100">  -->
+	<!--                 	<p:outputLabel> -->
+	<!--                 		<p:graphicImage url="../imagens/corsas/DSC03451.jpg"  width="40px" height="40px"/> -->
+	<!--                 	</p:outputLabel> -->
+	<!--                 </p:layoutUnit>   -->
+
+	<!--                 <p:layoutUnit position="west" size="220">   -->
+	<!--                     <ui:insert name="menu"> -->
+	<!--                         <h:form> -->
+	<!--                             <p:menu style="width: 200px"> -->
+	<!--                                 <p:submenu label="Menu"> -->
+	<!--                                     <p:menuitem value="Paciente"/> -->
+	<!--                                     <p:menuitem value="CRUD"/>   -->
+	<!--                                     <p:menuitem value="Agenda"/>        -->
+	<!--                                 </p:submenu> -->
+	<!--                             </p:menu> -->
+	<!--                         </h:form> -->
+	<!--                     </ui:insert> -->
+	<!--                 </p:layoutUnit>   -->
+	<!--                 <p:layoutUnit position="center">   -->
+	<!--                     <ui:insert name="centro"> -->
+	<!--                         O que estiver aqui será substituido! -->
+	<!--                     </ui:insert> -->
+	<!--                 </p:layoutUnit>   -->
+	<!--             </p:layout>   -->
+	<!--         </div> -->
+</h:body>
+</html>

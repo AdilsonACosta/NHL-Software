@@ -6,7 +6,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import br.com.nhlsoftware.dao.UsuarioDao;
+import br.com.nhlsoftware.dao.LoginDao;
 import br.com.nhlsoftware.model.Usuario;
 
 @ManagedBean(name = "loginUsuario")
@@ -15,10 +15,10 @@ public class LoginControl{
 	private String login;
 	private String senha;
 	
-	private UsuarioDao usuarioDao;
+	private LoginDao loginDao;
 	
 	public LoginControl(){
-		this.usuarioDao = new UsuarioDao();
+		this.loginDao = new LoginDao();
 	}
 
 	public String getLogin() {
@@ -38,12 +38,12 @@ public class LoginControl{
 	}
 
 	public void logar() {
-		Usuario usuario = this.usuarioDao.pesquisarUsuario(this.login, this.senha);
+		Usuario usuario = this.loginDao.pesquisarUsuario(this.login, this.senha);
 		this.login = "";
 		this.senha = "";
 		if (usuario != null) {
 			try {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("crud.jsf");
+				FacesContext.getCurrentInstance().getExternalContext().redirect("crudUsuario.jsf");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -51,6 +51,5 @@ public class LoginControl{
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Login ou Senha Inválido!"));
 		}
-		
 	}
 }

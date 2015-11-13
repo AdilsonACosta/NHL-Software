@@ -50,8 +50,7 @@ public class UsuarioControl {
 		this.usuarioDao.criarUsuario(usuario);
 		this.login = "";
 		this.senha = "";
-		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Usuario " + login
-						+ " cadastrado com sucesso!"));
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Usuario cadastrado com sucesso!"));
 
 		try {
 			usuarios = this.usuarioDao.listarUsuario();
